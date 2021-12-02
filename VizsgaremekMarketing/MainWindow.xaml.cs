@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VizsgaremekMarketing.Navigation;
+using VizsgaremekMarketing.Pages;
 
 namespace VizsgaremekMarketing
 {
@@ -21,11 +22,15 @@ namespace VizsgaremekMarketing
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
-
-            Navigate
+            //Statikus osztály a Navigate
+            //Eltárolja a nyitó ablakot, hogy azon tudjuk módosítani a pageket.
+            Navigate.mainWindow = this;
+            WelcomePage welcomePage = new WelcomePage();
+            Navigate.Navigation(welcomePage);
         }
     }
 }
