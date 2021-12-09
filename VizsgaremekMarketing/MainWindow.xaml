@@ -25,10 +25,13 @@
                             Menü 1.
                         </TextBlock>
                     </ListViewItem>
-                    <ListViewItem x:Name="lviExit" FontFamily="Century Gothic" FontSize="13" Foreground="White">
-                        <TextBlock>
+                    <ListViewItem Height="30" x:Name="lviExit" FontFamily="Century Gothic" FontSize="13" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Icons/7693997_arrow_out_exit_leave_icon.png"  Height="20" Margin="5 2 5 2" />
+                            <TextBlock>
                             Kilépés
-                        </TextBlock>
+                            </TextBlock>
+                        </StackPanel>
                     </ListViewItem>
 
                 </ListView>
