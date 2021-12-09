@@ -32,5 +32,26 @@ namespace VizsgaremekMarketing
             WelcomePage welcomePage = new WelcomePage();
             Navigate.Navigation(welcomePage);
         }
+        /// <summary>
+        /// ListView elemen bal egér gomb el lett engedve
+        /// </summary>
+        /// <param name="sender">ListView amin megnyomtuk a bal egér gombot</param>
+        /// <param name="e"></param>
+        private void ListView_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ListView lvMenu = sender as ListView;
+            ListViewItem lvMenuItem = lvMenu.SelectedItem as ListViewItem;
+
+            if(lvMenuItem != null)
+            {
+                //x:Name tulajdonságot vizsgáljuk
+                switch (lvMenuItem.Name)
+                {
+                    case "lviExit":
+                        Close();
+                    break;
+                }
+            }
+        }
     }
 }
