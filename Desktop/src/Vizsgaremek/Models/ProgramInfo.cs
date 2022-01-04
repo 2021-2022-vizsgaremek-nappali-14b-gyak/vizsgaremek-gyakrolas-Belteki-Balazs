@@ -12,6 +12,11 @@ namespace Vizsgaremek.Models
     {
         private Version version;
         private string authors;
+        private string title;
+        private string description;
+        private string company;
+
+
 
         public Version Version
         {
@@ -31,11 +36,33 @@ namespace Vizsgaremek.Models
             }
         }
 
+        public string Title { get => title; set => title = value; }
+        public string Description { get => description; set => description = value; }
+        public string Company { get => company; set => company = value; }
+
         public ProgramInfo()
-        { }
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
 
 
+            foreach (Attribute attr in Attribute.GetCustomAttributes(assembly))
+            {
+                if (attr.GetType() == typeof(AssemblyTitleAttribute))
+                    Title = ((AssemblyTitleAttribute)attr).Title;
+                else if (attr.GetType() == typeof(AssemblyDescriptionAttribute))
+                    Description = ((AssemblyDescriptionAttribute)attr).Description;
+                else if (attr.GetType() == typeof(AssemblyCompanyAttribute))
+                    Company = ((AssemblyCompanyAttribute)attr).Company;
 
+            }
 
+        }
+
+        public ProgramInfo(string title, string description, string company)
+        {
+            this.Title = title;
+            this.Description = description;
+            this.Company = company;
+        }
     }
 }
