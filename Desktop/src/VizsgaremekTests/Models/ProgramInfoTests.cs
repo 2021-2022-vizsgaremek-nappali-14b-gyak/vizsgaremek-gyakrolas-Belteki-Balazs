@@ -81,6 +81,48 @@ namespace Vizsgaremek.Models.Tests
             // assert
             Assert.AreEqual(expected, actual, "This is not the company!");
         }
+
+        [TestMethod()]
+        public void ProgramInfoTestRepoName()
+        {
+            // arrange
+            ProgramInfo programInfo = new ProgramInfo();
+            string expected = new string("belteki-balazs");
+
+            // act
+            string actual = programInfo.Reponame;
+
+            // assert
+            Assert.AreEqual(expected, actual, "This is not the repository name!");
+        }
+
+        [TestMethod()]
+        public void ProgramInfoTestRepoID()
+        {
+            // arrange
+            ProgramInfo programInfo = new ProgramInfo();
+            int expected = new int(431761485);
+
+            // act
+            int actual = programInfo.RepoID;
+
+            // assert
+            Assert.AreEqual(expected, actual, "This is not the company!");
+        }
+
+        [TestMethod()]
+        public void ProgramInfoTestClient()
+        {
+            // arrange
+            ProgramInfo programInfo = new ProgramInfo();
+            string expected = new string("belteki-balazs");
+
+            // act
+            string actual = programInfo.Company;
+
+            // assert
+            Assert.AreEqual(expected, actual, "This is not the company!");
+        }
     }
 
 
