@@ -32,13 +32,17 @@ namespace Vizsgaremek.Models
         {
             get
             {
+               
                 return "";
             }
         }
 
+
+
         public string Title { get => title; set => title = value; }
         public string Description { get => description; set => description = value; }
         public string Company { get => company; set => company = value; }
+        
 
         public ProgramInfo()
         {
@@ -53,6 +57,7 @@ namespace Vizsgaremek.Models
                     Description = ((AssemblyDescriptionAttribute)attr).Description;
                 else if (attr.GetType() == typeof(AssemblyCompanyAttribute))
                     Company = ((AssemblyCompanyAttribute)attr).Company;
+
 
             }
 
