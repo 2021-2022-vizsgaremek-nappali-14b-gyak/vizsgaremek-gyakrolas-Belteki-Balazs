@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Vizsgaremek.Pages
+
+namespace Vizsgaremek.views.Pages
 {
     /// <summary>
     /// Interaction logic for DataBaseSourcePage.xaml
@@ -23,6 +24,11 @@ namespace Vizsgaremek.Pages
         public DataBaseSourcePage()
         {
             InitializeComponent();
+        }
+
+        private void Image_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            welcomePage
         }
     }
 }

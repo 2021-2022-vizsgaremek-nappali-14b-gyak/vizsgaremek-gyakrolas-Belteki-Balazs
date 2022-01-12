@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <StackPanel Orientation="Horizontal" Height="48" VerticalAlignment="Top"> 
+            <Image Source="/Icons/back_icon.png" Height="48" PreviewMouseLeftButtonUp="Image_PreviewMouseLeftButtonUp"/>
+
+        </StackPanel>
     </Grid>
 </UserControl>
