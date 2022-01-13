@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Reflection;
+using Octokit;
+using System.Diagnostics;
+
 
 namespace Vizsgaremek.Models
 {
@@ -15,7 +17,6 @@ namespace Vizsgaremek.Models
         private string title;
         private string description;
         private string company;
-
 
 
         public Version Version
@@ -32,20 +33,44 @@ namespace Vizsgaremek.Models
         {
             get
             {
-               
                 return "";
             }
         }
 
-
-
         public string Title { get => title; set => title = value; }
         public string Description { get => description; set => description = value; }
         public string Company { get => company; set => company = value; }
-        
+
+        private async void GetGithubCollaboratorsName()
+        {
+            string reponame = "vizsgaremek-gyakrolas-Hamori-Tamas";
+            int repoId = 431760258;
+            var client = new GitHubClient(new ProductHeaderValue(reponame));
+
+            // fejlesztők meghatározása
+            try
+            {
+                var collaborators = await client.Repository.GetAllContributors(repoId);
+                string collaboratorsName = string.Empty;
+                foreach (var collaborator in collaborators)
+                {
+                    string collaboratorLoginName = collaborator.Login;
+                    var user = await client.User.Get(collaboratorLoginName);
+                    collaboratorsName += user.Name + " (" + user.Login + ") ";
+                }
+                authors = collaboratorsName;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
+        }
+
 
         public ProgramInfo()
         {
+            GetGithubCollaboratorsName();
+
             Assembly assembly = Assembly.GetExecutingAssembly();
 
 
@@ -58,16 +83,15 @@ namespace Vizsgaremek.Models
                 else if (attr.GetType() == typeof(AssemblyCompanyAttribute))
                     Company = ((AssemblyCompanyAttribute)attr).Company;
 
-
             }
 
         }
 
         public ProgramInfo(string title, string description, string company)
         {
-            this.Title = title;
-            this.Description = description;
-            this.Company = company;
+            this.title = title;
+            this.description = description;
+            this.company = company;
         }
     }
 }

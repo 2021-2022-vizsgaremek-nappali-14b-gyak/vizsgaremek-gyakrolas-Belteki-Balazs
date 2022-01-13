@@ -12,23 +12,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Vizsgaremek.Views.Navigation;
+using Vizsgaremek.ViewModels;
 
-
-namespace Vizsgaremek.views.Pages
+namespace Vizsgaremek.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for DataBaseSourcePage.xaml
+    /// Interaction logic for DatabaseSourcePage.xaml
     /// </summary>
-    public partial class DataBaseSourcePage : UserControl
+    public partial class DatabaseSourcePage : UserControl
     {
-        public DataBaseSourcePage()
+        DatabaseSourceViewModel databaseSourceViewModel;
+        public DatabaseSourcePage()
         {
+            databaseSourceViewModel = new DatabaseSourceViewModel();
             InitializeComponent();
+            this.DataContext = databaseSourceViewModel;
         }
 
         private void Image_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            welcomePage
+            WelcomePage welcomePage = new WelcomePage();
+            Navigate.Navigation(welcomePage);
         }
     }
 }
